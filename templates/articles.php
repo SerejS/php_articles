@@ -1,16 +1,25 @@
+<?php include "base.php";?>
+
+<?php
+$conn = new mysqli("localhost", "root", "root", "news");
+$result = $conn->query("SELECT id, author, title, create_date FROM article");
+?>
+
 <section class="section">
+    <?php foreach ($result as $row):?>
     <div class="container">
         <div class="columns is-half">
-            {{ range . }}
             <div class="column">
                 <article class="box">
-                    <a class="title is-3 mb-2" href="/article/{{ .Id }}/">{{ .Title }}</a>
+                    <a class="title is-3 mb-2" href="/article.php/<?php echo $row['id']?>/">
+                        <?php echo $row['title'] ?>
+                    </a>
                     <br>
-                    <strong>{{ .Author }}</strong>
-                    <p>{{ .Time.Format "2006.01.02" }}</p>
+                    <strong><?php echo $row['author'] ?></strong>
+                    <p><?php echo $row['create_date'] ?></p>
                 </article>
             </div>
-            {{ end }}
         </div>
     </div>
+    <?php endforeach;?>
 </section>
