@@ -2,7 +2,7 @@
 
 <?php
 $conn = new mysqli("localhost", "root", "root", "news");
-$result = $conn->query("SELECT id, author, title, create_date FROM article");
+$result = $conn->query("SELECT article.id, login as author, title, create_date FROM article JOIN user on article.author=user.id");
 ?>
 
 <section class="section">

@@ -19,7 +19,7 @@ if (isAuth($_COOKIE)) { ?>
 
 <?php
 $conn = new mysqli("localhost", "root", "root", "news");
-$result = $conn->query("SELECT * FROM article WHERE id = ". $_GET["id"]);
+$result = $conn->query("SELECT article.*, login FROM article JOIN user on article.author=user.id WHERE article.id = ". $_GET["id"]);
 $row = $result->fetch_assoc();
 ?>
 
@@ -29,11 +29,11 @@ $row = $result->fetch_assoc();
             <div class="column is-10 is-offset-1">
                 <div id="box" class="box">
                     <h3 id="title" class="title is-3 mb-2"><?php echo $row['title']?></h3>
-                    <strong><?php echo $row['author']?></strong>
+                    <strong><?php echo $row['login']?></strong>
                     <p><?php echo $row['create_date']?></p>
                     <hr>
                     <p id="body"><?php echo $row['body']?></p>
-                    <?php if (isOwner($_COOKIE)) {?>
+                    <?php if (isOwner($row['author'])) {?>
                     <div id="buttons" class="buttons mb-0 mt-3">
                         <button id="edit-button" class="button is-info is-light">Редактировать</button>
                         <button id="delete-button" class="button is-danger is-light">Удалить</button>
@@ -42,10 +42,13 @@ $row = $result->fetch_assoc();
                     <?php }?>
                 </div>
                 <div class="box">
-                    {{ range .Article.Comments }}
-                    {{ template "comment" . }}
-                    {{ end }}
 
+                    <?php
+                    $result = $conn->query("SELECT comment.*, login FROM comment JOIN user ON user.id=comment.author where article=".$_GET["id"]);
+                    foreach ($result as $comment):
+                        include "comment.php";
+                    endforeach
+                    ?>
 
                     <?php
                     if (isAuth($_COOKIE)) {

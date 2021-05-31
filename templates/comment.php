@@ -1,24 +1,20 @@
-{{ define "comment" }}
-    <article class="media">
-        <figure class="media-left"></figure>
-        <div class="media-content">
-            <div class="content">
-                <p>
-                    <strong>{{ .Author }}</strong>
-                    <br>
-                    {{ .Text }}
-                    <br>
-                    <small>
-                        <a onclick="open_reply({{ .Id }})">Ответить</a>
-                        · {{ .Time.Format "01.02 15:04" }}</small>
-                </p>
-            </div>
-            {{ template "reply" . }}
-            {{ range .Comments }}
-                {{ template "comment" . }}
-            {{ end }}
+<article class="media">
+    <figure class="media-left"></figure>
+    <div class="media-content">
+        <div class="content">
+            <p>
+                <strong><?php echo $comment['login']?></strong>
+                <br>
+                <?php echo $comment['comment']?>
+                <br>
+                <small>
+                    <a onclick="open_reply(<?php echo $comment['id']?>)">Ответить</a>
+                    · <?php echo $comment['create']?></small>
+            </p>
         </div>
-    </article>
-{{ end }}
-
-{{ template "comment" }}
+        {{ template "reply" . }}
+        {{ range .Comments }}
+        {{ template "comment" . }}
+        {{ end }}
+    </div>
+</article>

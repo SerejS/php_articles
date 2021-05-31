@@ -10,6 +10,9 @@ function isAuth($cookies) {
     return true;
 }
 
-function isOwner($cookies) {
+function isOwner($author) {
+    if (!isset($cookies["user_id"]) || !isset($cookies["token"]) || $cookies['user_id'] != $author) {
+        return false;
+    }
     return true;
 }
