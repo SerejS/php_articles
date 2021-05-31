@@ -1,3 +1,8 @@
+<?php
+require_once ("../checkauth.php");
+
+use function Auth\isAuth;
+?>
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -15,7 +20,7 @@
             </a>
 
             <?php
-                 if ($GLOBALS['IsAuthorized']) {
+                 if (isAuth($_COOKIE)) {
                      echo "<a class=\"navbar-item\" href=\"/article/new/\">Написать статью</a>";
                  }
             ?>
@@ -25,7 +30,7 @@
             <div class="navbar-item">
                 <div class="buttons">
                     <?php
-                        if ($GLOBALS['IsAuthorized']) {
+                        if (isAuth($_COOKIE)) {
                             echo "<a class='button is-light' href='/logout/'>Выйти</a>";
                         } else {
                             echo "<a class='button is-light' href='/signup/'>Зарегистрироваться</a>";

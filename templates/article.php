@@ -1,13 +1,26 @@
-<?php if ($GLOBALS['IsAuthorized']) { ?>
+<?php
+require_once("../checkauth.php");
+
+use function Auth\isAuth;
+
+include "base.php";
+
+if (isAuth($_COOKIE)) { ?>
     <div id="modal" class="modal">
         <div class="modal-background"></div>
         <div class="modal-content">
             <div id="modal-box" class="box"></div>
-         </div>
+        </div>
     </div>
     <script src="/front/overlay.js"></script>
-    <script>let article_id = {{ .Article.Id }}</script>
-<?php }?>
+    <script>let article_id = <?php echo $_GET['id'] ?>}</script>
+<?php } ?>
+
+<?php
+$conn = new mysqli("localhost", "root", "tlf96602", "news");
+$result = $conn->query("SELECT * FROM news WHERE id = " . $_POST["id"]);
+$row = $result->fetch_assoc();
+?>
 
 <section class="section">
     <div class="container">
@@ -34,12 +47,12 @@
 
 
                     <?php
-                    if ($GLOBALS['IsAuthorized']) {
+                    if (isAuth($_COOKIE)) {
                         include("reply.php");
                         echo "<script src='/front/comment.js'></script>";
                     } else {
-                    ?>
-                        <script>let open_reply = (id) => {
+                        ?>
+                        <script>let open_reply = (_) => {
                             }  </script>
                         <article class="media">
                             <figure class="media-left"></figure>
