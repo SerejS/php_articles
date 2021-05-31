@@ -9,3 +9,7 @@ function isAuth($cookies) {
     }
     return true;
 }
+
+function isOwner($cookies) {
+    return true;
+}

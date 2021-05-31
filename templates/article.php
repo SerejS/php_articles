@@ -2,6 +2,7 @@
 require_once("../checkauth.php");
 
 use function Auth\isAuth;
+use function Auth\isOwner;
 
 include "base.php";
 
@@ -17,8 +18,8 @@ if (isAuth($_COOKIE)) { ?>
 <?php } ?>
 
 <?php
-$conn = new mysqli("localhost", "root", "tlf96602", "news");
-$result = $conn->query("SELECT * FROM news WHERE id = " . $_POST["id"]);
+$conn = new mysqli("localhost", "root", "root", "news");
+$result = $conn->query("SELECT * FROM article WHERE id = ". $_GET["id"]);
 $row = $result->fetch_assoc();
 ?>
 
@@ -27,18 +28,18 @@ $row = $result->fetch_assoc();
         <div class="columns">
             <div class="column is-10 is-offset-1">
                 <div id="box" class="box">
-                    <h3 id="title" class="title is-3 mb-2">{{ .Article.Title }}</h3>
-                    <strong>{{ .Article.Author }}</strong>
-                    <p>{{ .Article.Time.Format "2006.01.02" }}</p>
+                    <h3 id="title" class="title is-3 mb-2"><?php echo $row['title']?></h3>
+                    <strong><?php echo $row['author']?></strong>
+                    <p><?php echo $row['create_date']?></p>
                     <hr>
-                    <p id="body">{{ .Article.Body }}</p>
-                    {{ if .IsOwner }}
+                    <p id="body"><?php echo $row['body']?></p>
+                    <?php if (isOwner($_COOKIE)) {?>
                     <div id="buttons" class="buttons mb-0 mt-3">
                         <button id="edit-button" class="button is-info is-light">Редактировать</button>
                         <button id="delete-button" class="button is-danger is-light">Удалить</button>
                     </div>
                     <script src="/front/article.js"></script>
-                    {{ end }}
+                    <?php }?>
                 </div>
                 <div class="box">
                     {{ range .Article.Comments }}
