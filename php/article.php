@@ -44,10 +44,11 @@ $row = $result->fetch_assoc();
                 <div class="box">
 
                     <?php
-                    $result = $conn->query("SELECT comment.*, login FROM comment JOIN user ON user.id=comment.author where article=".$_GET["id"]);
+                    $result = $conn->query("SELECT comment.*, login FROM comment JOIN user ON user.id=comment.author where root is null and article=".$_GET["id"]);
                     foreach ($result as $comment):
+                        $nesting = 1;
                         include "comment.php";
-                    endforeach
+                    endforeach;
                     ?>
 
                     <?php
@@ -61,7 +62,7 @@ $row = $result->fetch_assoc();
                         <article class="media">
                             <figure class="media-left"></figure>
                             <div class="media-content">
-                                <p>Войдите что б оставить комментарий</p>
+                                <hr><p>Войдите что б оставить комментарий</p>
                             </div>
                         </article>
                     <?php } ?>

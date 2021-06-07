@@ -15,7 +15,7 @@ use function Auth\isAuth;
 <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
     <div id="navbarBasic" class="navbar-menu">
         <div class="navbar-start">
-            <a class="navbar-item" href="/">
+            <a class="navbar-item" href="/php/articles.php">
                 Все статьи
             </a>
 

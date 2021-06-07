@@ -11,7 +11,7 @@ $result = $conn->query("SELECT article.id, title, `user`.login as author, create
         <div class="columns is-half">
             <div class="column">
                 <article class="box">
-                    <a class="title is-3 mb-2" href="article.php?id=<?php echo $row['id']?>">
+                    <a class="title is-3 mb-2" href="/php_articles/php/article.php?id=<?php echo $row['id']?>">
                         <?php echo $row['title'] ?>
                     </a>
                     <br>
