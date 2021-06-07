@@ -18,7 +18,7 @@ if (isAuth($_COOKIE)) { ?>
 <?php } ?>
 
 <?php
-$conn = new mysqli("localhost", "root", "root", "news");
+$conn = new mysqli("mysql.skopa.dev:33600", "root", "6PmH68BzJub6SaY7", "articles");
 $result = $conn->query("SELECT article.*, login FROM article JOIN user on article.author=user.id WHERE article.id = ". $_GET["id"]);
 $row = $result->fetch_assoc();
 ?>
@@ -30,7 +30,7 @@ $row = $result->fetch_assoc();
                 <div id="box" class="box">
                     <h3 id="title" class="title is-3 mb-2"><?php echo $row['title']?></h3>
                     <strong><?php echo $row['login']?></strong>
-                    <p><?php echo $row['create_date']?></p>
+                    <p><?php echo $row['created']?></p>
                     <hr>
                     <p id="body"><?php echo $row['body']?></p>
                     <?php if (isOwner($row['author'])) {?>

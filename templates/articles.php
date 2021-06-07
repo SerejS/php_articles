@@ -1,8 +1,8 @@
 <?php include "base.php";?>
 
 <?php
-$conn = new mysqli("localhost", "root", "root", "news");
-$result = $conn->query("SELECT article.id, login as author, title, create_date FROM article JOIN user on article.author=user.id");
+$conn = new mysqli("mysql.skopa.dev:33600", "root", "6PmH68BzJub6SaY7", "articles");
+$result = $conn->query("SELECT article.id, title, `user`.login as author, created FROM article JOIN `user` on article.author=user.id");
 ?>
 
 <section class="section">
@@ -16,7 +16,7 @@ $result = $conn->query("SELECT article.id, login as author, title, create_date F
                     </a>
                     <br>
                     <strong><?php echo $row['author'] ?></strong>
-                    <p><?php echo $row['create_date'] ?></p>
+                    <p><?php echo $row['created'] ?></p>
                 </article>
             </div>
         </div>
