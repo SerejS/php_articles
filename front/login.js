@@ -4,7 +4,7 @@ let password_input = document.getElementById('password')
 
 login_button.onclick = () => {
     login_button.classList.add('is-loading')
-    fetch('/templates/login.php', {
+    fetch('login-check.php', {
         method: 'POST',
         body: JSON.stringify({
             'login': login_input.value,
@@ -13,7 +13,7 @@ login_button.onclick = () => {
     })
         .then((r) => {
             if (r.status === 200) {
-                document.location.href = '../php/articles.php'
+                document.location.href = '/php/articles.php'
             } else {
                 document.querySelectorAll('.input').forEach((e) => {
                     e.classList.add('is-danger')

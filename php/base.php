@@ -1,8 +1,3 @@
-<?php
-require_once ("../checkauth.php");
-
-use function Auth\isAuth;
-?>
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -18,11 +13,11 @@ use function Auth\isAuth;
             <a class="navbar-item" href="/php/articles.php">
                 Все статьи
             </a>
-
             <?php
-                 if (isAuth($_COOKIE)) {
-                     echo "<a class=\"navbar-item\" href=\"/article/new/\">Написать статью</a>";
-                 }
+            session_start();
+            if (isset($_SESSION["user_id"])) {
+                echo "<a class=\"navbar-item\" href=\"/article/new/\">Написать статью</a>";
+            }
             ?>
         </div>
 
@@ -30,12 +25,12 @@ use function Auth\isAuth;
             <div class="navbar-item">
                 <div class="buttons">
                     <?php
-                        if (isAuth($_COOKIE)) {
-                            echo "<a class='button is-light' href='/logout/'>Выйти</a>";
-                        } else {
-                            echo "<a class='button is-light' href='/signup/'>Зарегистрироваться</a>";
-                            echo "<a class='button is-light' href=/login/'>Войти</a>";
-                        }
+                    if (isset($_SESSION["user_id"])) {
+                        echo "<a class='button is-light' href='/php/logout.php'>Выйти</a>";
+                    } else {
+                        echo "<a class='button is-light' href='/signup/'>Зарегистрироваться</a>";
+                        echo "<a class='button is-light' href='/php/login.php'>Войти</a>";
+                    }
                     ?>
                 </div>
             </div>
