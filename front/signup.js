@@ -4,7 +4,7 @@ let password_input = document.getElementById('password')
 
 login_button.onclick = () => {
     login_button.classList.add('is-loading')
-    fetch('/signup/', {
+    fetch('/php/signup-post.php', {
         method: 'POST',
         body: JSON.stringify({
             'login': login_input.value,
@@ -13,7 +13,7 @@ login_button.onclick = () => {
     })
         .then((r) => {
             if (r.status === 200) {
-                document.location.href = '/login/'
+                document.location.href = '/php/login.php'
             } else {
                 overlay("Не удалось зарегистрировать!",
                     (modal) => modal.classList.remove('is-active'))

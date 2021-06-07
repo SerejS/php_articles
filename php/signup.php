@@ -1,3 +1,5 @@
+<?php include "base.php"; ?>
+
 <div id="modal" class="modal">
     <div class="modal-background"></div>
     <div class="modal-content">

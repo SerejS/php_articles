@@ -28,7 +28,7 @@
                     if (isset($_SESSION["user_id"])) {
                         echo "<a class='button is-light' href='/php/logout.php'>Выйти</a>";
                     } else {
-                        echo "<a class='button is-light' href='/signup/'>Зарегистрироваться</a>";
+                        echo "<a class='button is-light' href='/php/signup.php'>Зарегистрироваться</a>";
                         echo "<a class='button is-light' href='/php/login.php'>Войти</a>";
                     }
                     ?>
