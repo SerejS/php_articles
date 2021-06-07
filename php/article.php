@@ -53,7 +53,6 @@ $row = $result->fetch_assoc();
 
                     <?php
                     if (isAuth($_COOKIE)) {
-                        include("reply.php");
                         echo "<script src='/front/comment.js'></script>";
                     } else {
                         ?>
