@@ -1,4 +1,5 @@
 <?php
+$title = "Статьи";
 include "base.php";
 include "../secrets.php";
 global $host, $username, $pass, $db;

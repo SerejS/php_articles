@@ -1,4 +1,11 @@
 <?php
+include "../secrets.php";
+global $host, $username, $pass, $db;
+$conn = new mysqli($host, $username, $pass, $db);
+$result = $conn->query("SELECT article.*, login FROM article JOIN user on article.author=user.id WHERE article.id = " . $_GET["id"]);
+$row = $result->fetch_assoc();
+
+$title = $row['title'];
 include "base.php";
 if (isset($_SESSION["user_id"])) { ?>
     <div id="modal" class="modal">
@@ -8,17 +15,8 @@ if (isset($_SESSION["user_id"])) { ?>
         </div>
     </div>
     <script src="/front/overlay.js"></script>
-    <script>let article_id = <?php echo $_GET['id'] ?>}</script>
+    <script>let article_id = <?php echo $_GET['id'] ?></script>
 <?php } ?>
-
-<?php
-include "../secrets.php";
-global $host, $username, $pass, $db;
-
-$conn = new mysqli($host, $username, $pass, $db);
-$result = $conn->query("SELECT article.*, login FROM article JOIN user on article.author=user.id WHERE article.id = " . $_GET["id"]);
-$row = $result->fetch_assoc();
-?>
 
 <section class="section">
     <div class="container">
@@ -50,6 +48,7 @@ $row = $result->fetch_assoc();
 
                     <?php
                     if (isset($_SESSION["user_id"])) {
+                        include("reply.php");
                         echo "<script src='/front/comment.js'></script>";
                     } else {
                         ?>

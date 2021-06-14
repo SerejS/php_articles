@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title><?php echo "Test" ?></title>
+    <title><?php echo $title ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
 </head>
@@ -37,6 +37,3 @@
         </div>
     </div>
 </nav>
-<!--{{ template "content" .Content }}-->
-</body>
-</html>

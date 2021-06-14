@@ -14,6 +14,7 @@
                     · <?php echo $comment['created'] ?></small>
             </p>
         </div>
+        <?php include ("reply.php")?>
     </div>
 </article>
 
