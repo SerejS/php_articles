@@ -20,12 +20,16 @@ function new_comment(id) {
             "body": textarea.value
         })
     }).then((r) => {
-        if (r.status === 200) {
-            overlay('Успешно добавлен комментарий',
-                () => document.location.reload())
-        } else {
-            overlay('Не удалось добавить комментарий',
-                () => document.querySelectorAll('.reply').forEach((v) => v.classList.add('is-hidden')))
+            if (r.status === 200) {
+                overlay('Успешно добавлен комментарий',
+                    () => document.location.reload())
+            } else {
+                overlay('Не удалось добавить комментарий',
+                    (modal) => {
+                        modal.classList.remove('is-active')
+                        document.querySelectorAll('.reply').forEach((v) => v.classList.add('is-hidden'))
+                    })
+            }
         }
-    })
+    )
 }
