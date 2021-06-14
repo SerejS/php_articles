@@ -12,7 +12,10 @@ if (isset($_SESSION["user_id"])) { ?>
 <?php } ?>
 
 <?php
-$conn = new mysqli("mysql.skopa.dev:33600", "root", "6PmH68BzJub6SaY7", "articles");
+include "../secrets.php";
+global $host, $username, $pass, $db;
+
+$conn = new mysqli($host, $username, $pass, $db);
 $result = $conn->query("SELECT article.*, login FROM article JOIN user on article.author=user.id WHERE article.id = " . $_GET["id"]);
 $row = $result->fetch_assoc();
 ?>

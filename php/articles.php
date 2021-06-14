@@ -1,8 +1,11 @@
-<?php include "base.php"; ?>
-
 <?php
-$conn = new mysqli("mysql.skopa.dev:33600", "root", "6PmH68BzJub6SaY7", "articles");
+include "base.php";
+include "../secrets.php";
+global $host, $username, $pass, $db;
+
+$conn = new mysqli($host, $username, $pass, $db);
 $result = $conn->query("SELECT article.id, title, `user`.login as author, created FROM article JOIN `user` on article.author=user.id");
+echo $conn->error;
 ?>
 
 <section class="section">
