@@ -44,10 +44,9 @@ if (isset($_SESSION["user_id"])) { ?>
                         $nesting = 1;
                         include "comment.php";
                     endforeach;
-                    ?>
 
-                    <?php
                     if (isset($_SESSION["user_id"])) {
+                        $comment["id"] = 0;
                         include("reply.php");
                         echo "<script src='/front/comment.js'></script>";
                     } else {

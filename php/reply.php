@@ -1,4 +1,4 @@
-<?php if ($comment["id"] == 0) {?>
+<?php if ($comment['id'] == 0){?>
 <article id="reply-<?php echo $comment["id"]?>" class="media reply mb-3">
 <?php } else {?>
 <article id="reply-<?php echo $comment["id"]?>" class="media reply is-hidden mb-3">
@@ -16,7 +16,7 @@
 
     <?php if ($comment["id"] == 0) {?>
         <a class="button is-info is-light"
-           onclick="new_comment(<?php echo $comment["id"].','.$comment["root"] ?>)">Комментировать</a>
+           onclick="new_comment(0)">Комментировать</a>
 
     <?php } else {?>
         <a class="button is-info is-light"

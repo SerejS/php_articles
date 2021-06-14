@@ -1,4 +1,7 @@
-<?php include "base.php"; ?>
+<?php
+$title = "Авторизация";
+include "base.php";
+?>
 
 <section class="section">
     <div class="container">

@@ -1,4 +1,7 @@
-<?php include "base.php" ?>
+<?php
+$title = "Добавление статьи";
+include "base.php"
+?>
 
 <div id="modal" class="modal">
     <div class="modal-background"></div>

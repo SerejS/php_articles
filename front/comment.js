@@ -12,7 +12,7 @@ function close_reply(id) {
 
 function new_comment(id) {
     let textarea = document.getElementById('reply-area-' + id)
-    fetch('/comment/new/', {
+    fetch('/php/comment-post.php', {
         method: 'POST',
         body: JSON.stringify({
             "article_id": article_id,
