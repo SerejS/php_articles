@@ -16,7 +16,7 @@
             <?php
             session_start();
             if (isset($_SESSION["user_id"])) {
-                echo "<a class=\"navbar-item\" href=\"/article/new/\">Написать статью</a>";
+                echo "<a class=\"navbar-item\" href=\"/php/new-article.php/\">Написать статью</a>";
             }
             ?>
         </div>
@@ -37,6 +37,3 @@
         </div>
     </div>
 </nav>
-<!--{{ template "content" .Content }}-->
-</body>
-</html>

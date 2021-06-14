@@ -8,7 +8,7 @@ if (isset($_SESSION["user_id"])) { ?>
         </div>
     </div>
     <script src="/front/overlay.js"></script>
-    <script>let article_id = <?php echo $_GET['id'] ?>}</script>
+    <script>let article_id = <?php echo $_GET['id'] ?></script>
 <?php } ?>
 
 <?php
