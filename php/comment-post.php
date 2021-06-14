@@ -7,7 +7,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $postData = file_get_contents('php://input');
     $comment = json_decode($postData, true);
     $conn = new mysqli($host, $username, $pass, $db);
-    $comment['root'] = $comment['root'] == null ? "null" :$comment['root'];
+    $comment['root'] = $comment['root'] == null ? "NULL" : $comment['root'];
     $stmt = $conn->prepare("INSERT INTO comment(root, author, `comment`, article, created) VALUES(".$comment['root'].", ".$_SESSION["user_id"].", \"".$comment["body"]." \", ".$comment["article_id"].", NOW())")
     or die('Запрос не удался: ' . $conn->error);
     $stmt->execute();
