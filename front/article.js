@@ -26,7 +26,7 @@ edit_button.onclick = () => {
 
     confirm_button.onclick = () => {
         text = edit_textarea.value
-        fetch('/article/update/', {
+        fetch('/php/article-edit.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -67,7 +67,7 @@ edit_button.onclick = () => {
 }
 
 delete_button.onclick = () => {
-    fetch('/article/delete/', {
+    fetch('/php/article-del.php', {
         method: 'POST',
         body: JSON.stringify({
             "article_id": article_id
@@ -76,7 +76,7 @@ delete_button.onclick = () => {
         .then((r) => {
             if (r.status === 200) {
                 overlay('Статья удалена',
-                    () => document.location.href = '/'
+                    () => document.location.href = '/php/articles.php'
                 )
             } else {
                 overlay('Не удалось удалить статью',
